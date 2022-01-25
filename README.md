@@ -1,4 +1,5 @@
 # KumuluzEE Database Schema Migrations
+[![KumuluzEE CI](https://github.com/kumuluz/kumuluzee-database-schema-migrations/actions/workflows/kumuluzee-ci.yml/badge.svg)](https://github.com/kumuluz/kumuluzee-database-schema-migrations/actions/workflows/kumuluzee-ci.yml)
 
 > KumuluzEE Database Schema Migrations project for database schema migrations with Liquibase.
 

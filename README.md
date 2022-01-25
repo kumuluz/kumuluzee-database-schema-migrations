@@ -157,3 +157,50 @@ public void dropAll() throws LiquibaseException {
 
 }
 ```
+
+## Building
+
+Ensure you have JDK 8 (or newer), Maven 3.2.1 (or newer) and Git installed
+
+```bash
+    java -version
+    mvn -version
+    git --version
+```
+
+First clone the repository:
+
+```bash
+    git clone https://github.com/kumuluz/kumuluzee-database-schema-migrations.git
+    cd kumuluzee-database-schema-migrations
+```
+
+To build run:
+
+```bash
+    mvn install
+```
+
+This will build all modules and run the testsuite.
+
+Once completed you will find the build archives in the modules respected `target` folder and local `.m2` repository.
+
+## Changelog
+
+Recent changes can be viewed on Github on the [Releases Page](https://github.com/kumuluz/kumuluzee-database-schema-migrations/releases)
+
+## Contribute
+
+See the [contributing docs](https://github.com/kumuluz/kumuluzee-database-schema-migrations/blob/master/CONTRIBUTING.md)
+
+When submitting an issue, please follow the
+[guidelines](https://github.com/kumuluz/kumuluzee-database-schema-migrations/blob/master/CONTRIBUTING.md#bugs).
+
+When submitting a bugfix, write a test that exposes the bug and fails before applying your fix. Submit the test
+alongside the fix.
+
+When submitting a new feature, add tests that cover the feature.
+
+## License
+
+MIT

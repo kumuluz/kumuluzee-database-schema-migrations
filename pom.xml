@@ -31,14 +31,28 @@
         <testng.version>6.14.3</testng.version>
         <jcommander.version>1.81</jcommander.version>
         <h2.version>2.1.210</h2.version>
+
+        <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
+        <gpg.plugin.version>1.6</gpg.plugin.version>
     </properties>
+
+    <scm>
+        <connection>scm:git:git@github.com:kumuluz/kumuluzee-database-schema-migrations.git</connection>
+        <developerConnection>scm:git:git@github.com:kumuluz/kumuluzee-database-schema-migrations.git</developerConnection>
+        <url>git@github.com:kumuluz/kumuluzee-database-schema-migrations.git</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/kumuluz/kumuluzee-database-schema-migrations/issues</url>
+    </issueManagement>
 
     <developers>
         <developer>
-            <name>Din Music</name>
-            <id>MusicDin</id>
-            <email>din.music@cloud.si</email>
-            <url>https://github.com/MusicDin</url>
+            <name>KumuluzEE Development Team</name>
+            <id>kumuluz</id>
+            <email>info@kumuluz.com</email>
+            <url>https://github.com/kumuluz</url>
         </developer>
     </developers>
 
@@ -48,6 +62,27 @@
             <url>http://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>sonatype-snapshots</id>
+            <name>OSS Sonatype repo (snapshots)</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -96,4 +131,49 @@
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus.staging.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${gpg.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

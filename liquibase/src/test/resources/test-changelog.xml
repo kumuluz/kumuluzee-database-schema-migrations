@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+    <changeSet author="KumuluzEE" id="create_table" context="init" labels="v1.0">
+        <createTable tableName="test_table">
+            <column name="id" type="varchar(128)"/>
+            <column name="testField" type="varchar(64)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="KumuluzEE" id="add_row" context="insert_sample_row" labels="v1.0">
+        <insert tableName="test_table">
+            <column name="id">123456789</column>
+            <column name="testField">This is test field.</column>
+        </insert>
+    </changeSet>
+
+    <changeSet author="KumuluzEE" id="drop_table" context="init and no_context" labels="v1.1, drop_table">
+        <dropTable tableName="test_table"/>
+    </changeSet>
+
+    <changeSet author="KumuluzEE" id="delete_row" context="no_context" labels="v1.1">
+        <delete tableName="test_table">
+            <where>id=123456789</where>
+        </delete>
+    </changeSet>
+
+</databaseChangeLog>

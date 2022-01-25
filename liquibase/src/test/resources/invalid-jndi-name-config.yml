@@ -1,0 +1,10 @@
+kumuluzee:
+  name: kumuluzee-samples-database-schema-migrations-liquibase
+  datasources:
+    - jndi-name: jdbc/TestDS
+      connection-url: jdbc:h2:mem:kumuluzee-database-schema-migrations-liquibase;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  database-schema-migrations:
+    enabled: true
+    liquibase:
+      changelogs:
+        - jndi-name: jdbc/NonExistingDS

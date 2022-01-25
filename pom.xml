@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kumuluz.ee.database-schema-migrations</groupId>
+    <artifactId>kumuluzee-database-schema-migrations</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <modules>
+        <module>common</module>
+        <module>liquibase</module>
+    </modules>
+
+    <name>KumuluzEE Database Schema Migrations</name>
+    <inceptionYear>2021</inceptionYear>
+    <description>Database schema migrations extensions for the lightweight KumuluzEE framework.</description>
+    <url>https://ee.kumuluz.com</url>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <kumuluzee.version>3.12.1</kumuluzee.version>
+
+        <kumuluzee-arquillian-container.version>1.1.1</kumuluzee-arquillian-container.version>
+        <arquillian.version>1.6.0.Final</arquillian.version>
+        <testng.version>6.14.3</testng.version>
+        <jcommander.version>1.81</jcommander.version>
+        <h2.version>2.1.210</h2.version>
+    </properties>
+
+    <developers>
+        <developer>
+            <name>Din Music</name>
+            <id>MusicDin</id>
+            <email>din.music@cloud.si</email>
+            <url>https://github.com/MusicDin</url>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-bom</artifactId>
+                <version>${kumuluzee.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.database-schema-migrations</groupId>
+                <artifactId>kumuluzee-database-schema-migrations-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.testing</groupId>
+                <artifactId>kumuluzee-arquillian-container</artifactId>
+                <version>${kumuluzee-arquillian-container.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+            </dependency>
+            <!-- Overrides TestNG's JCommander version-->
+            <dependency>
+                <groupId>com.beust</groupId>
+                <artifactId>jcommander</artifactId>
+                <version>${jcommander.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

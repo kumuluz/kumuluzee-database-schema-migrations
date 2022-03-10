@@ -28,10 +28,7 @@ import com.kumuluz.ee.database.schema.migrations.liquibase.configurations.Liquib
 import com.kumuluz.ee.database.schema.migrations.liquibase.utils.LiquibaseConfigurationUtil;
 
 import javax.enterprise.event.Observes;
-import javax.enterprise.inject.spi.AfterBeanDiscovery;
-import javax.enterprise.inject.spi.DeploymentException;
-import javax.enterprise.inject.spi.Extension;
-import javax.enterprise.inject.spi.ProcessInjectionPoint;
+import javax.enterprise.inject.spi.*;
 import java.util.List;
 
 /**
@@ -48,8 +45,8 @@ public class LiquibaseCdiExtension implements Extension {
      * @param pip - Observed ProcessInjectionPoint event
      */
     public void validateInjectionPoints(@Observes ProcessInjectionPoint<?, ?> pip) {
-
-        if (pip.getInjectionPoint().getBean().getBeanClass().isInstance(LiquibaseContainerProducer.class)) {
+        Bean<?> bean = pip.getInjectionPoint().getBean();
+        if (bean != null && bean.getBeanClass().isInstance(LiquibaseContainerProducer.class)) {
 
             final LiquibaseConfigurationUtil liquibaseConfigurationUtil = LiquibaseConfigurationUtil.getInstance();
 

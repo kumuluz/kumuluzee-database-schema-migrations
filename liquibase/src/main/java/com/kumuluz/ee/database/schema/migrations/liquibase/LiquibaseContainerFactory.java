@@ -51,6 +51,10 @@ public class LiquibaseContainerFactory {
      */
     public LiquibaseContainer createLiquibaseContainer() {
 
+        if (!LiquibaseExtension.isExtensionEnabled()) {
+            return null;
+        }
+
         LiquibaseConfig liquibaseConfig = getLiquibaseConfig(jndiName);
         DataSourceConfig dataSourceConfig = getDataSourceConfig(liquibaseConfig.getJndiName());
 

@@ -86,7 +86,8 @@ kumuluzee:
 #### Disable migrations
 
 To disable database schema migrations at application startup, set `kumuluzee.database-schema-migrations.enabled` 
-to false (default is `true`).
+to false (default is `true`). This will disable migrations at startup and the injection of `LiquibaseContainer` will 
+always return `null`.
 ```yaml
 kumuluzee:
   database-schema-migrations:

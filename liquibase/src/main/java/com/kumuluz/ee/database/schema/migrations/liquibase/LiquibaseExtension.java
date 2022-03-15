@@ -26,6 +26,8 @@ import com.kumuluz.ee.common.dependencies.EeExtensionDef;
 import com.kumuluz.ee.common.wrapper.KumuluzServerWrapper;
 import com.kumuluz.ee.configuration.utils.ConfigurationUtil;
 
+import java.util.Optional;
+
 /**
  * KumuluzEE framework extension for Liquibase.
  *
@@ -47,10 +49,15 @@ public class LiquibaseExtension implements Extension {
 
     @Override
     public boolean isEnabled() {
-        return ConfigurationUtil
+        return isExtensionEnabled();
+    }
+
+    public static boolean isExtensionEnabled() {
+        Optional<Boolean> enabled = ConfigurationUtil
                 .getInstance()
-                .getBoolean("kumuluzee.database-schema-migrations.enabled")
-                .orElse(true);
+                .getBoolean("kumuluzee.database-schema-migrations.enabled");
+
+        return enabled.orElse(true);
     }
 
 }

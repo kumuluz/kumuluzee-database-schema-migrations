@@ -21,6 +21,7 @@
 package com.kumuluz.ee.database.schema.migrations.liquibase.cdi;
 
 import com.kumuluz.ee.database.schema.migrations.common.MigrationUtil;
+import com.kumuluz.ee.database.schema.migrations.liquibase.LiquibaseExtension;
 import com.kumuluz.ee.database.schema.migrations.liquibase.utils.LiquibaseMigrationUtil;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -42,6 +43,11 @@ public class MigrationInitializer {
      * @param init - Initialized application scope object.
      */
     public void migrate(@Observes @Initialized(ApplicationScoped.class) Object init) {
+
+        if (!LiquibaseExtension.isExtensionEnabled()) {
+            return;
+        }
+
         MigrationUtil migrationUtil = new LiquibaseMigrationUtil();
         migrationUtil.migrate();
     }
